@@ -1,0 +1,56 @@
+name: CI/CD
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths-ignore:
+      - ".claude/**"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  infra-dev:
+    name: Dev Infrastructure
+    uses: ./.github/workflows/deploy-infra.yml
+    with:
+      environment: dev
+    permissions:
+      id-token: write
+      contents: read
+    secrets: inherit
+
+  deploy-frontend-dev:
+    name: Dev Frontend
+    needs: [infra-dev]
+    uses: ./.github/workflows/deploy-frontend.yml
+    with:
+      environment: dev
+    permissions:
+      id-token: write
+      contents: read
+    secrets: inherit
+
+  infra-prod:
+    name: Prod Infrastructure
+    needs: [deploy-frontend-dev]
+    uses: ./.github/workflows/deploy-infra.yml
+    with:
+      environment: prod
+    permissions:
+      id-token: write
+      contents: read
+    secrets: inherit
+
+  deploy-frontend-prod:
+    name: Prod Frontend
+    needs: [infra-prod]
+    uses: ./.github/workflows/deploy-frontend.yml
+    with:
+      environment: prod
+    permissions:
+      id-token: write
+      contents: read
+    secrets: inherit

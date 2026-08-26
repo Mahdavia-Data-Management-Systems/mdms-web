@@ -1,0 +1,59 @@
+name: Destroy Infrastructure
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Environment to destroy"
+        required: true
+        type: choice
+        options:
+          - dev
+          - prod
+      confirmation:
+        description: "Type DESTROY to confirm"
+        required: true
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  destroy:
+    name: Destroy ${{ inputs.environment }} Infrastructure
+    runs-on: ubuntu-latest
+    if: inputs.confirmation == 'DESTROY'
+    defaults:
+      run:
+        working-directory: infra/configurations/${{ inputs.environment }}
+    env:
+      ARM_CLIENT_ID: ${{ vars.AZURE_CLIENT_ID }}
+      ARM_SUBSCRIPTION_ID: ${{ vars.AZURE_SUBSCRIPTION_ID }}
+      ARM_TENANT_ID: ${{ vars.AZURE_TENANT_ID }}
+      ARM_USE_OIDC: true
+      TF_TOKEN_app_terraform_io: ${{ secrets.TF_API_TOKEN }}
+      TFE_TOKEN: ${{ secrets.TF_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Plan Destroy
+        run: terraform plan -destroy -out=tfplan
+
+      - name: Terraform Apply Destroy
+        run: terraform apply -auto-approve tfplan
+
+  reject:
+    name: Rejection Notice
+    runs-on: ubuntu-latest
+    if: inputs.confirmation != 'DESTROY'
+    steps:
+      - name: Reject
+        run: |
+          echo "::error::Destruction not confirmed. You must type 'DESTROY' to confirm."
+          exit 1
