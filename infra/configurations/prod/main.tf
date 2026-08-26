@@ -13,7 +13,7 @@ module "swa" {
 
   app_settings = {
     "NEXT_PUBLIC_ENTRA_CLIENT_ID" = "42b3e442-6a5f-4a2b-bacd-99bc68fe4f68"
-    "NEXT_PUBLIC_ENTRA_AUTHORITY" = "https://mahdavisonline.com/${data.tfe_outputs.core.values.tenant_id}"
+    "NEXT_PUBLIC_ENTRA_AUTHORITY" = "https://${split(".", data.tfe_outputs.core.values.tenant_domain)[0]}.ciamlogin.com/${data.tfe_outputs.core.values.tenant_id}"
   }
 }
 
