@@ -1,6 +1,6 @@
 module "keyvault" {
   source              = "../../modules/azure/keyvault"
-  name                = "kv-mdms-dev"
+  name                = "kv-mahdaviadms-dev"
   resource_group_name = data.azurerm_resource_group.main.name
   location            = data.azurerm_resource_group.main.location
 }
