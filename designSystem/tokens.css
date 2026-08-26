@@ -1,0 +1,66 @@
+/*
+ * MDMS Design Tokens
+ * Standalone reference of all CSS custom properties.
+ *
+ * Sources:
+ *   Landing Page  — Claude Design project e16c5ea5-8a5c-4426-a846-32ce33010702
+ *   Dashboard     — Claude Design project ed5c3cd3-1f70-4e54-9162-9a3df58cdeb3
+ *
+ * Tokens marked [L] are landing-page origin, [D] are dashboard origin,
+ * [S] are shared/unified in implementation.
+ */
+
+:root {
+  /* ─── Brand Greens ─── */
+  --green-deep: #0F3D2E;            /* [S] Primary brand, hero/sidebar bg */
+  --green-darker: #081E16;          /* [D] Deeper shade (dashboard-only) */
+  --green-action: #1F7A5C;          /* [S] Interactive/CTA green */
+  --green-hover: #16664C;           /* [S] Hover state for green-action */
+  --green-subtle: rgba(31, 122, 92, 0.06);
+    /* [L] = 0.06 opacity, [D] = 0.07 opacity — implementation uses 0.06 */
+
+  /* ─── Brand Golds ─── */
+  --gold: #C9A24A;                  /* [S] Primary accent */
+  --gold-soft: rgba(201, 162, 74, 0.12);  /* [S] Subtle gold bg */
+  --gold-muted: rgba(201, 162, 74, 0.35); /* [S] Decorative lines, dividers */
+  --gold-light: #F8F0D8;           /* [D] Light gold (dashboard-only) */
+
+  /* ─── Surfaces ─── */
+  --surface: #F7F5F1;              /* [L] Warm off-white bg */
+    /* Note: [D] uses #F6F4F0 (slightly cooler) — implementation uses #F7F5F1 */
+  --card: #FFFFFF;                 /* [S] Card/panel background */
+  --border: rgba(15, 61, 46, 0.08);      /* [S] Default border */
+    /* Note: [D] spec uses 0.07 — implementation uses 0.08 */
+  --border-strong: rgba(15, 61, 46, 0.12); /* [D] Emphasized border */
+
+  /* ─── Text Colors ─── */
+  --text-1: #1A2E2A;              /* [S] Primary text */
+  --text-2: rgba(26, 46, 42, 0.6);  /* [S] Secondary text */
+  --text-3: rgba(26, 46, 42, 0.4);  /* [S] Tertiary/muted text */
+
+  /* ─── Inverted Text (on dark backgrounds) ─── */
+  --text-inv: #FFFFFF;             /* [S] Primary on dark */
+  --text-inv-2: rgba(255, 255, 255, 0.7);  /* [L] Secondary on dark */
+    /* Note: [D] uses rgba(255,255,255,0.55) — implementation uses 0.7 */
+  --text-inv-3: rgba(255, 255, 255, 0.45); /* [S] Tertiary on dark */
+
+  /* ─── Typography ─── */
+  --serif: var(--font-eb-garamond), 'Noto Serif', Georgia, serif;
+  --sans: var(--font-source-sans), 'Segoe UI', system-ui, sans-serif;
+
+  /* ─── Layout ─── */
+  --section-py: 100px;            /* [L] Landing section vertical padding */
+  --content-max: 1100px;          /* [L] Landing content max-width */
+
+  /* ─── Border Radius Scale ─── */
+  --r: 10px;                      /* [D] Standard radius (icons, panels) */
+  --r-lg: 14px;                   /* [D] Large radius (dashboard panels) */
+
+  /* ─── Shadows ─── */
+  --shadow: 0 1px 3px rgba(15, 61, 46, 0.04),
+            0 1px 2px rgba(15, 61, 46, 0.03);  /* [D] Subtle card shadow */
+
+  /* ─── Dashboard Layout ─── */
+  --sidebar-w: 240px;             /* [D] Sidebar fixed width */
+  --topbar-h: 64px;               /* [D] Top bar height */
+}

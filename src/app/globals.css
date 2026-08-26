@@ -1,0 +1,93 @@
+:root {
+  /* Brand colors */
+  --green-deep: #0F3D2E;
+  --green-darker: #081E16;
+  --green-action: #1F7A5C;
+  --green-hover: #16664C;
+  --green-subtle: rgba(31, 122, 92, 0.06);
+  --gold: #C9A24A;
+  --gold-soft: rgba(201, 162, 74, 0.12);
+  --gold-muted: rgba(201, 162, 74, 0.35);
+  --gold-light: #F8F0D8;
+
+  /* Surfaces */
+  --surface: #F7F5F1;
+  --card: #FFFFFF;
+  --border: rgba(15, 61, 46, 0.08);
+  --border-strong: rgba(15, 61, 46, 0.12);
+
+  /* Text */
+  --text-1: #1A2E2A;
+  --text-2: rgba(26, 46, 42, 0.6);
+  --text-3: rgba(26, 46, 42, 0.4);
+  --text-inv: #FFFFFF;
+  --text-inv-2: rgba(255, 255, 255, 0.7);
+  --text-inv-3: rgba(255, 255, 255, 0.45);
+
+  /* Typography */
+  --serif: var(--font-eb-garamond), 'Noto Serif', Georgia, serif;
+  --sans: var(--font-source-sans), 'Segoe UI', system-ui, sans-serif;
+
+  /* Layout */
+  --section-py: 100px;
+  --content-max: 1100px;
+  --r: 10px;
+  --r-lg: 14px;
+  --shadow: 0 1px 3px rgba(15, 61, 46, 0.04), 0 1px 2px rgba(15, 61, 46, 0.03);
+
+  /* Dashboard */
+  --sidebar-w: 240px;
+  --topbar-h: 64px;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--text-1);
+  background: var(--card);
+  line-height: 1.6;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utility */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
