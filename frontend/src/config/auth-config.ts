@@ -4,6 +4,9 @@ export const msalConfig: Configuration = {
   auth: {
     clientId: process.env.NEXT_PUBLIC_ENTRA_CLIENT_ID ?? "",
     authority: process.env.NEXT_PUBLIC_ENTRA_AUTHORITY ?? "",
+    knownAuthorities: process.env.NEXT_PUBLIC_ENTRA_AUTHORITY
+      ? [new URL(process.env.NEXT_PUBLIC_ENTRA_AUTHORITY).hostname]
+      : [],
     redirectUri: process.env.NEXT_PUBLIC_ENTRA_REDIRECT_URI ?? "/",
     postLogoutRedirectUri: "/",
   },
