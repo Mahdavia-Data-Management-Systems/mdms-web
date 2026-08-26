@@ -43,10 +43,10 @@ jobs:
         run: terraform init
 
       - name: Terraform Plan Destroy
-        run: terraform plan -destroy -out=tfplan
+        run: terraform plan -destroy -input=false
 
       - name: Terraform Apply Destroy
-        run: terraform apply -auto-approve tfplan
+        run: terraform apply -destroy -auto-approve -input=false
 
   reject:
     name: Rejection Notice

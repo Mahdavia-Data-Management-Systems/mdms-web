@@ -338,7 +338,7 @@ export default function LandingPage() {
               { initials: "SR", name: "Syed Rehan", role: "Auditor & Advisor" },
               {
                 initials: "SS",
-                name: "Faqeer Syed Sajjad",
+                name: "Faqeer Syed Sajjad Sahib",
                 role: "COO & Advisor",
               },
             ].map((member) => (
