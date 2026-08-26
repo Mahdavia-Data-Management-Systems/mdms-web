@@ -52,7 +52,7 @@ jobs:
       - name: Get Deployment Token
         id: get-token
         run: |
-          TOKEN=$(az keyvault secret show --vault-name kv-mdms-${{ inputs.environment }} --name swa-deployment-token --query value -o tsv)
+          TOKEN=$(az keyvault secret show --vault-name kv-mahdaviadms-${{ inputs.environment }} --name swa-deployment-token --query value -o tsv)
           echo "::add-mask::$TOKEN"
           echo "token=$TOKEN" >> $GITHUB_OUTPUT
 
