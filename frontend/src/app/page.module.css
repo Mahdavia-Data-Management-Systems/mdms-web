@@ -72,7 +72,7 @@
 /* Hero */
 .hero {
   position: relative;
-  background: var(--green-deep);
+  background: linear-gradient(180deg, #0A2E22 0%, #0F3D2E 45%, #0D362A 100%);
   padding: 160px 48px 100px;
   text-align: center;
   overflow: hidden;

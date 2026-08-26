@@ -331,7 +331,7 @@ export default function LandingPage() {
                 role: "Principal DevOps Engineer",
               },
               {
-                initials: "NM",
+                initials: "DNM",
                 name: "Dr. Noor Mohammed",
                 role: "Advisor",
               },
