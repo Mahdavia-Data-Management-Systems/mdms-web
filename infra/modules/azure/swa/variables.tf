@@ -25,12 +25,6 @@ variable "app_settings" {
   default     = {}
 }
 
-variable "custom_domain" {
-  description = "Custom domain name to associate with the Static Web App"
-  type        = string
-  default     = null
-}
-
 variable "tags" {
   description = "Tags to apply to the resource"
   type        = map(string)

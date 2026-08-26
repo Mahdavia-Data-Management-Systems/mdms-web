@@ -10,7 +10,6 @@ module "swa" {
   name                = "swa-mdms-dev"
   resource_group_name = data.azurerm_resource_group.main.name
   location            = var.swa_location
-  custom_domain       = "dev.mahdavisonline.com"
 
   app_settings = {
     "NEXT_PUBLIC_ENTRA_CLIENT_ID" = "1021d885-0174-4138-a53b-bb6502f7840f"
