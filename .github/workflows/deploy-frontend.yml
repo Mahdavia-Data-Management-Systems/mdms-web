@@ -45,11 +45,6 @@ jobs:
           echo "NEXT_PUBLIC_ENTRA_CLIENT_ID=$(echo $APP_SETTINGS | jq -r '.NEXT_PUBLIC_ENTRA_CLIENT_ID')" >> $GITHUB_ENV
           echo "NEXT_PUBLIC_ENTRA_AUTHORITY=$(echo $APP_SETTINGS | jq -r '.NEXT_PUBLIC_ENTRA_AUTHORITY')" >> $GITHUB_ENV
 
-      - name: Fetch Redirect URI
-        run: |
-          HOSTNAME=$(az staticwebapp show --name swa-mdms-${{ inputs.environment }} --query "defaultHostname" -o tsv)
-          echo "NEXT_PUBLIC_ENTRA_REDIRECT_URI=https://$HOSTNAME" >> $GITHUB_ENV
-
       - name: Get Deployment Token
         id: get-token
         run: |
