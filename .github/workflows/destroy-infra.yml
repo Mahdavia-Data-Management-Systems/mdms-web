@@ -22,6 +22,7 @@ jobs:
   destroy:
     name: Destroy ${{ inputs.environment }} Infrastructure
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     if: inputs.confirmation == 'DESTROY'
     defaults:
       run:

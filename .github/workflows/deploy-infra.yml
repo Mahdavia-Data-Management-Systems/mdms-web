@@ -15,6 +15,7 @@ jobs:
   deploy:
     name: Deploy ${{ inputs.environment }} Infrastructure
     runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
     defaults:
       run:
         working-directory: infra/configurations/${{ inputs.environment }}
