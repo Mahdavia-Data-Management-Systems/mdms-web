@@ -42,12 +42,12 @@ export default function ContactPage() {
                 Message us directly on WhatsApp
               </p>
               <a
-                href="https://wa.me/noormahdi"
+                href="https://chat.whatsapp.com/CIzyMm95fIb0iPGLXT3huz"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.contactLink}
               >
-                @noormahdi
+                MDMS on WhatsApp
               </a>
             </div>
 
