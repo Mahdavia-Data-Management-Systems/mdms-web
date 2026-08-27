@@ -1,6 +1,6 @@
 "use client";
 
-import { useMsal, useIsAuthenticated } from "@azure/msal-react";
+import { useMsal, AuthenticatedTemplate, UnauthenticatedTemplate } from "@azure/msal-react";
 import { loginRequest } from "@/config/auth-config";
 
 interface AuthButtonProps {
@@ -9,7 +9,6 @@ interface AuthButtonProps {
 
 export default function AuthButton({ className }: AuthButtonProps) {
   const { instance } = useMsal();
-  const isAuthenticated = useIsAuthenticated();
 
   const handleLogin = () => {
     instance.loginRedirect(loginRequest);
@@ -19,17 +18,18 @@ export default function AuthButton({ className }: AuthButtonProps) {
     instance.logoutRedirect();
   };
 
-  if (isAuthenticated) {
-    return (
-      <button className={className} onClick={handleLogout}>
-        Sign Out
-      </button>
-    );
-  }
-
   return (
-    <button className={className} onClick={handleLogin}>
-      Sign In
-    </button>
+    <>
+      <AuthenticatedTemplate>
+        <button className={className} onClick={handleLogout}>
+          Sign Out
+        </button>
+      </AuthenticatedTemplate>
+      <UnauthenticatedTemplate>
+        <button className={className} onClick={handleLogin}>
+          Sign In
+        </button>
+      </UnauthenticatedTemplate>
+    </>
   );
 }

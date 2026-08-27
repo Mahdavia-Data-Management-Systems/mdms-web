@@ -1,6 +1,8 @@
 "use client";
 
-import { ReactNode, useEffect, useState } from "react";
+import {
+  ReactNode,
+} from "react";
 import {
   PublicClientApplication,
   EventType,
@@ -10,40 +12,22 @@ import { MsalProvider } from "@azure/msal-react";
 import { msalConfig } from "@/config/auth-config";
 
 const msalInstance = new PublicClientApplication(msalConfig);
-
-export default function AuthProvider({ children }: { children: ReactNode }) {
-  const [isInitialized, setIsInitialized] = useState(false);
-
-  useEffect(() => {
-    msalInstance.initialize().then(async () => {
-      msalInstance.addEventCallback((event) => {
-        if (
-          event.eventType === EventType.LOGIN_SUCCESS &&
-          event.payload
-        ) {
-          const result = event.payload as AuthenticationResult;
-          msalInstance.setActiveAccount(result.account);
-        }
-      });
-
-      try {
-        await msalInstance.handleRedirectPromise();
-      } catch (error) {
-        console.error("Error processing redirect:", error);
-      }
-
-      const accounts = msalInstance.getAllAccounts();
-      if (accounts.length > 0 && !msalInstance.getActiveAccount()) {
-        msalInstance.setActiveAccount(accounts[0]);
-      }
-
-      setIsInitialized(true);
-    });
-  }, []);
-
-  if (!isInitialized) {
-    return null;
+msalInstance.initialize().then(async () => {
+  if (!msalInstance.getActiveAccount() && msalInstance.getAllAccounts().length > 0) {
+    msalInstance.setActiveAccount(msalInstance.getAllAccounts()[0]);
   }
 
+  msalInstance.addEventCallback((event) => {
+    if (
+      event.eventType === EventType.LOGIN_SUCCESS &&
+      event.payload
+    ) {
+      const result = event.payload as AuthenticationResult;
+      msalInstance.setActiveAccount(result.account);
+    }
+  });
+});
+
+export default function AuthProvider({ children }: { children: ReactNode }) {
   return <MsalProvider instance={msalInstance}>{children}</MsalProvider>;
 }
