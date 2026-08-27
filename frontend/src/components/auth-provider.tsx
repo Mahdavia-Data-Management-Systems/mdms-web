@@ -15,10 +15,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    msalInstance.initialize().then(async () => {
-      // Process the redirect response after returning from the IDP
-      await msalInstance.handleRedirectPromise();
-
+    msalInstance.initialize().then(() => {
       const accounts = msalInstance.getAllAccounts();
       if (accounts.length > 0 && !msalInstance.getActiveAccount()) {
         msalInstance.setActiveAccount(accounts[0]);
