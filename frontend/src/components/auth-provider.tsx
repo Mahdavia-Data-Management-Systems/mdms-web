@@ -15,12 +15,7 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
 
   useEffect(() => {
-    msalInstance.initialize().then(() => {
-      const accounts = msalInstance.getAllAccounts();
-      if (accounts.length > 0 && !msalInstance.getActiveAccount()) {
-        msalInstance.setActiveAccount(accounts[0]);
-      }
-
+    msalInstance.initialize().then(async () => {
       msalInstance.addEventCallback((event) => {
         if (
           event.eventType === EventType.LOGIN_SUCCESS &&
@@ -30,6 +25,13 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
           msalInstance.setActiveAccount(result.account);
         }
       });
+
+      await msalInstance.handleRedirectPromise();
+
+      const accounts = msalInstance.getAllAccounts();
+      if (accounts.length > 0 && !msalInstance.getActiveAccount()) {
+        msalInstance.setActiveAccount(accounts[0]);
+      }
 
       setIsInitialized(true);
     });
