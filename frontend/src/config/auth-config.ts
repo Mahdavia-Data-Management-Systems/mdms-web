@@ -9,6 +9,7 @@ export const msalConfig: Configuration = {
       : [],
     redirectUri: process.env.NEXT_PUBLIC_ENTRA_REDIRECT_URI ?? "/",
     postLogoutRedirectUri: "/",
+    navigateToLoginRequestUrl: false,
   },
   cache: {
     cacheLocation: "localStorage",

@@ -26,7 +26,11 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
         }
       });
 
-      await msalInstance.handleRedirectPromise();
+      try {
+        await msalInstance.handleRedirectPromise();
+      } catch (error) {
+        console.error("Error processing redirect:", error);
+      }
 
       const accounts = msalInstance.getAllAccounts();
       if (accounts.length > 0 && !msalInstance.getActiveAccount()) {
