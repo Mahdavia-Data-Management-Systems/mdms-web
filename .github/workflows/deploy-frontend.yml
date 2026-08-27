@@ -44,7 +44,6 @@ jobs:
           APP_SETTINGS=$(az staticwebapp appsettings list --name swa-mdms-${{ inputs.environment }} --query "properties" -o json)
           echo "NEXT_PUBLIC_ENTRA_CLIENT_ID=$(echo $APP_SETTINGS | jq -r '.NEXT_PUBLIC_ENTRA_CLIENT_ID')" >> $GITHUB_ENV
           echo "NEXT_PUBLIC_ENTRA_AUTHORITY=$(echo $APP_SETTINGS | jq -r '.NEXT_PUBLIC_ENTRA_AUTHORITY')" >> $GITHUB_ENV
-          echo "NEXT_PUBLIC_ENTRA_REDIRECT_URI=$(echo $APP_SETTINGS | jq -r '.NEXT_PUBLIC_ENTRA_REDIRECT_URI')" >> $GITHUB_ENV
 
       - name: Get Deployment Token
         id: get-token
