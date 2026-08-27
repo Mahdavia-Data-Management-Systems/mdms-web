@@ -16,9 +16,16 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     msalInstance.initialize().then(() => {
-     const accounts = msalInstance.getAllAccounts();
-      if (accounts.length > 0 && !msalInstance.getActiveAccount()) {
-        msalInstance.setActiveAccount(accounts[0]);
+      // Process any pending redirect response and clear interaction_in_progress flag
+      return msalInstance.handleRedirectPromise();
+    }).then((response) => {
+      if (response?.account) {
+        msalInstance.setActiveAccount(response.account);
+      } else {
+        const accounts = msalInstance.getAllAccounts();
+        if (accounts.length > 0 && !msalInstance.getActiveAccount()) {
+          msalInstance.setActiveAccount(accounts[0]);
+        }
       }
 
       msalInstance.addEventCallback((event) => {
