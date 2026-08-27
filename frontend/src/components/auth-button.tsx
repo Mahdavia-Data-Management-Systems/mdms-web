@@ -1,7 +1,6 @@
 "use client";
 
 import { useMsal, useIsAuthenticated } from "@azure/msal-react";
-import { InteractionStatus } from "@azure/msal-browser";
 import { loginRequest } from "@/config/auth-config";
 
 interface AuthButtonProps {
@@ -9,16 +8,14 @@ interface AuthButtonProps {
 }
 
 export default function AuthButton({ className }: AuthButtonProps) {
-  const { instance, inProgress } = useMsal();
+  const { instance } = useMsal();
   const isAuthenticated = useIsAuthenticated();
 
   const handleLogin = () => {
-    if (inProgress !== InteractionStatus.None) return;
     instance.loginRedirect(loginRequest);
   };
 
   const handleLogout = () => {
-    if (inProgress !== InteractionStatus.None) return;
     instance.logoutRedirect();
   };
 
@@ -31,11 +28,7 @@ export default function AuthButton({ className }: AuthButtonProps) {
   }
 
   return (
-    <button
-      className={className}
-      onClick={handleLogin}
-      disabled={inProgress !== InteractionStatus.None}
-    >
+    <button className={className} onClick={handleLogin}>
       Sign In
     </button>
   );
