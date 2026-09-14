@@ -114,14 +114,28 @@ JSON
 
 Resolve the id with `gh api users/noormahdi --jq .id`.
 
-### Step 3 — Add a ruleset on `main`
+### Step 3 (DONE) — Add a ruleset on `main`
 
 Require a pull request with one approval, require the PR validation checks from step 5, and block
 deletion and force-push. The sole maintainer needs to be a bypass actor, because GitHub will not
 accept a pull request author's own approval; the deployment branch policies from step 1 still
 apply to whatever is merged.
 
-### Step 4 — Restrict the actions allowlist
+Two deliberate deviations from the `ishqnama-web` baseline, both to be closed later:
+
+- **No `required_status_checks` rule yet.** `pr-validation.yml` does not exist, and requiring a
+  check that never reports would block every merge. Add the rule once step 5 has landed and its
+  job names are known.
+- **No team `required_reviewers` entry.** The baseline names the `pr-approvers` team, but that
+  team only has access to `ishqnama-web`, and granting it access here is a permission change that
+  was deliberately not made as part of this work. `required_approving_review_count: 1` plus
+  `require_code_owner_review` gives the same result today, because the team's only member is
+  already an administrator of this repository.
+
+`require_code_owner_review` is set now even though `.github/CODEOWNERS` does not yet exist; with no
+owners defined it is satisfied vacuously, and it starts binding the moment step 7 lands.
+
+### Step 4 (DONE) — Restrict the actions allowlist
 
 The actions actually used are `actions/checkout`, `actions/setup-node`, `azure/login`,
 `Azure/static-web-apps-deploy` and `hashicorp/setup-terraform`.
@@ -144,7 +158,7 @@ names then become the required status checks in step 3.
 `terraform validate` is deliberately excluded: it needs `terraform init`, and the `cloud {}` block
 requires the Terraform Cloud token, which must not be exposed to a fork.
 
-### Step 6 — Tighten fork pull request approval
+### Step 6 (DONE) — Tighten fork pull request approval
 
 ```bash
 gh api -X PUT "repos/$R/actions/permissions/fork-pr-contributor-approval" \
