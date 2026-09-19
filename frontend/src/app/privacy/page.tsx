@@ -38,8 +38,8 @@ export default function PrivacyPage() {
             <h3 className={styles.subTitle}>Account Information</h3>
             <p>
               When you create an account, we collect your name, email
-              address, and authentication credentials. This information is
-              necessary to provide you with access to our platforms.
+              address, other profile related information, and authentication credentials. 
+              This information is necessary to provide you with access to our platforms.
             </p>
             <h3 className={styles.subTitle}>Usage Data</h3>
             <p>

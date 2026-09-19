@@ -314,23 +314,23 @@ export default function LandingPage() {
           </p>
           <div className={styles.teamGrid}>
             {[
-              { initials: "NM", name: "Noor Mahdi", role: "Founder & CTO" },
+              { initials: "NM", name: "Noor Mahdi", role: "Chief Architect & Founding Engineer" },
               {
                 initials: "SA",
                 name: "Syed Ather Abbas",
-                role: "Principal Architect",
+                role: "Principal Architect Consultant",
               },
               {
                 initials: "SZ",
                 name: "Syed Zahirullah",
-                role: "Principal DevOps Engineer",
+                role: "Principal DevOps Consultant",
               },
               {
                 initials: "DNM",
                 name: "Dr. Noor Mohammed",
-                role: "Advisor",
+                role: "Literature Evangelist & Advisor",
               },
-              { initials: "SR", name: "Syed Rehan", role: "Auditor & Advisor" },
+              { initials: "SR", name: "Syed Rehan", role: "Advisor" },
               {
                 initials: "SS",
                 name: "Faqeer Syed Sajjad Sahib",
