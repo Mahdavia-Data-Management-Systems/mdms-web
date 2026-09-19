@@ -343,6 +343,18 @@
   height: 20px;
 }
 
+.platformIconLogo {
+  background: rgba(0, 68, 70, 0.08);
+  border: 1px solid rgba(0, 68, 70, 0.12);
+}
+
+.platformLogo {
+  width: 32px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
 .platformDomain {
   font-size: 10px;
   font-weight: 600;

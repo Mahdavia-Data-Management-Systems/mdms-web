@@ -209,18 +209,13 @@ export default function LandingPage() {
           <div className={styles.platformsGrid}>
             <div className={styles.platformCard}>
               <div
-                className={styles.platformIcon}
-                style={{ background: "#0F3D2E" }}
+                className={`${styles.platformIcon} ${styles.platformIconLogo}`}
               >
-                <svg
-                  viewBox="0 0 20 20"
-                  fill="none"
-                  stroke="white"
-                  strokeWidth="1.5"
-                >
-                  <path d="M4 4 L10 2 L16 4 L16 16 L10 18 L4 16 Z" />
-                  <line x1="10" y1="2" x2="10" y2="18" />
-                </svg>
+                <img
+                  src="/ishqnama-logo.svg"
+                  alt="Ishqnama logo"
+                  className={styles.platformLogo}
+                />
               </div>
               <div className={styles.platformDomain}>Scripture</div>
               <a href="https://www.ishqnama.com" target="_blank" rel="noopener noreferrer" className={styles.platformName}>Ishqnama</a>
