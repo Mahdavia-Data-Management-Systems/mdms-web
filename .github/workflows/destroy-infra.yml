@@ -36,10 +36,10 @@ jobs:
       TFE_TOKEN: ${{ secrets.TF_API_TOKEN }}
       TF_VAR_azure_subscription_id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v3
+        uses: hashicorp/setup-terraform@v4
 
       - name: Terraform Init
         run: terraform init
